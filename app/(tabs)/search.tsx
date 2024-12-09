@@ -257,30 +257,34 @@ const SearchScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFFFFF", // Make the default background white
+    backgroundColor: "#FFFFFF", // White background for cleanliness
     paddingHorizontal: 20,
   },
   headerWrapper: {
-    backgroundColor: "#ff8a2d", // Orange background for the top section
+    backgroundColor: "#FF8A2D", // Bright orange for a welcoming header
     paddingTop: 50,
     paddingBottom: 20,
     marginBottom: 20,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
+    shadowColor: "#000", // Subtle shadow for elevation
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 5,
   },
   header: {
     alignItems: "center",
-    backgroundColor: "#ff8a2d",
   },
   title: {
-    fontSize: 24,
+    fontSize: 28, // Increased font size for better visibility
     fontWeight: "bold",
     color: "#FFFFFF",
   },
   filterRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 20,
+    marginTop: 10,
   },
   filterButton: {
     backgroundColor: "#FFFFFF",
@@ -289,15 +293,21 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     borderRadius: 10,
     alignItems: "center",
+    shadowColor: "#000", // Added shadow for depth
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3,
   },
   filterText: {
     color: "#FF8A2D",
     fontWeight: "bold",
+    fontSize: 16,
   },
   modalContainer: {
     flex: 1,
     justifyContent: "flex-end",
-    backgroundColor: "rgba(0,0,0,0.5)",
+    backgroundColor: "rgba(0,0,0,0.5)", // Semi-transparent background
   },
   pickerContainer: {
     backgroundColor: "#FFFFFF",
@@ -305,15 +315,23 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     paddingHorizontal: 20,
     paddingBottom: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: -2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 5,
   },
   doneButton: {
-    marginTop: 10,
+    marginTop: 15,
     alignItems: "center",
+    paddingVertical: 10,
+    backgroundColor: "#FF8A2D",
+    borderRadius: 10,
   },
   doneButtonText: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#FF8A2D",
+    color: "#FFFFFF",
   },
   datePickerContainer: {
     flexDirection: "row",
@@ -327,34 +345,55 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 5,
     alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3,
   },
   dateText: {
     color: "#FF8A2D",
     fontWeight: "bold",
+    fontSize: 16,
   },
   toText: {
     color: "#333333",
     fontWeight: "bold",
     marginHorizontal: 10,
+    fontSize: 16,
   },
   searchButton: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FF8A2D",
     padding: 15,
     borderRadius: 10,
     alignItems: "center",
+    marginTop: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3,
   },
   searchButtonText: {
-    color: "#FF8A2D",
+    color: "#FFFFFF",
     fontWeight: "bold",
+    fontSize: 16,
   },
   resultItem: {
     backgroundColor: "#FFFFFF",
     padding: 10,
     marginVertical: 5,
-    borderRadius: 5,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3,
   },
   resultText: {
     color: "#333333",
+    fontSize: 14,
+    marginBottom: 5,
   },
 });
 
