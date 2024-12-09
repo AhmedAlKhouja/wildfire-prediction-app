@@ -127,7 +127,9 @@ const SearchScreen = () => {
             <Text style={styles.filterText}>{selectedSeverity}</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.datePickerContainer}>
+      </View>
+
+      <View style={styles.datePickerContainer}>
         <TouchableOpacity
           style={styles.dateButton}
           onPress={() => setShowFromDatePicker(true)}
@@ -167,6 +169,70 @@ const SearchScreen = () => {
         />
       )}
 
+      <Modal
+        visible={showCountryPicker}
+        animationType="slide"
+        transparent={true}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.pickerContainer}>
+            <Picker
+              selectedValue={selectedCountry}
+              onValueChange={(itemValue) => {
+                setSelectedCountry(itemValue);
+                setShowCountryPicker(false); // Close the modal after selection
+              }}
+            >
+              {countries.map((country) => (
+                <Picker.Item
+                  key={country.value}
+                  label={country.label}
+                  value={country.label}
+                />
+              ))}
+            </Picker>
+            <TouchableOpacity
+              style={styles.doneButton}
+              onPress={() => setShowCountryPicker(false)}
+            >
+              <Text style={styles.doneButtonText}>Done</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal
+        visible={showSeverityPicker}
+        animationType="slide"
+        transparent={true}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.pickerContainer}>
+            <Picker
+              selectedValue={selectedSeverity}
+              onValueChange={(itemValue) => {
+                setSelectedSeverity(itemValue);
+                setShowSeverityPicker(false); // Close the modal after selection
+              }}
+            >
+              {severities.map((severity) => (
+                <Picker.Item
+                  key={severity.value}
+                  label={severity.label}
+                  value={severity.label}
+                />
+              ))}
+            </Picker>
+            <TouchableOpacity
+              style={styles.doneButton}
+              onPress={() => setShowSeverityPicker(false)}
+            >
+              <Text style={styles.doneButtonText}>Done</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
       <TouchableOpacity style={styles.searchButton} onPress={performSearch}>
         <Text style={styles.searchButtonText}>Search</Text>
       </TouchableOpacity>
@@ -184,9 +250,6 @@ const SearchScreen = () => {
           </View>
         )}
       />
-      </View>
-
-      
     </SafeAreaView>
   );
 };
