@@ -52,9 +52,16 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="declare"
+        options={{
+          title: 'Declare',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="plus" color={color} />,
+        }}
+      />
+      <Tabs.Screen
         name="search"
         options={{
-          title: 'Search',
+          title: 'History',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="magnifyingglass" color={color} />,
         }}
       />
@@ -66,5 +73,6 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
+    
   );
 }
