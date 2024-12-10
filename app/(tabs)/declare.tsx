@@ -18,7 +18,6 @@ export default function DeclareScreen() {
   const [wind, setWind] = useState("N/A");
   const [vegetation, setVegetation] = useState("N/A");
   const [structures, setStructures] = useState("N/A");
-  const [crownFires, setCrownFires] = useState(false);
   const [isEmergency, setIsEmergency] = useState(false);
 
   const [dropdownVisible, setDropdownVisible] = useState({
@@ -40,7 +39,6 @@ export default function DeclareScreen() {
       wind,
       vegetation,
       structures,
-      crownFires: crownFires ? "Yes" : "No",
       isEmergency: isEmergency ? "Yes" : "No",
     };
 
@@ -55,6 +53,7 @@ export default function DeclareScreen() {
             selectedValue={selectedValue}
             style={styles.picker}
             onValueChange={(itemValue) => setSelectedValue(itemValue)}
+            mode="dropdown"
           >
             {options.map((option) => (
               <Picker.Item key={option} label={option} value={option} />
@@ -93,28 +92,16 @@ export default function DeclareScreen() {
         >
           <Text style={styles.dropdownText}>Rate of Spread: {rateOfSpread}</Text>
         </TouchableOpacity>
-        {renderPickerWithDoneButton("rateOfSpread", ["Rapidly", "Moderately", "Slowly", "N/A"], rateOfSpread, setRateOfSpread)}
-
-        {/* Crown Fires */}
-        <View style={styles.switchContainer}>
-          <Text style={styles.label}>Crown Fires</Text>
-          <Switch
-            value={crownFires}
-            onValueChange={setCrownFires}
-            thumbColor={crownFires ? "#FF8A2D" : "#ccc"}
-          />
-        </View>
+        {renderPickerWithDoneButton("rateOfSpread", ["N/A", "Slow", "Moderate", "Rapid"], rateOfSpread, setRateOfSpread)}
 
         {/* Wind */}
         <TouchableOpacity
           style={styles.dropdownButton}
-          onPress={() =>
-            setDropdownVisible((prev) => ({ ...prev, wind: !prev.wind }))
-          }
+          onPress={() => setDropdownVisible((prev) => ({ ...prev, wind: !prev.wind }))}
         >
           <Text style={styles.dropdownText}>Wind: {wind}</Text>
         </TouchableOpacity>
-        {renderPickerWithDoneButton("wind", ["Strong", "Moderate", "N/A"], wind, setWind)}
+        {renderPickerWithDoneButton("wind", ["N/A", "Light", "Moderate", "Strong"], wind, setWind)}
 
         {/* Vegetation */}
         <TouchableOpacity
@@ -125,7 +112,7 @@ export default function DeclareScreen() {
         >
           <Text style={styles.dropdownText}>Vegetation: {vegetation}</Text>
         </TouchableOpacity>
-        {renderPickerWithDoneButton("vegetation", ["A lot", "Moderate", "A little", "Nothing"], vegetation, setVegetation)}
+        {renderPickerWithDoneButton("vegetation", ["N/A", "Light", "Moderate", "Abundance"], vegetation, setVegetation)}
 
         {/* Proximity to Structures */}
         <TouchableOpacity
@@ -136,7 +123,7 @@ export default function DeclareScreen() {
         >
           <Text style={styles.dropdownText}>Proximity to Structures: {structures}</Text>
         </TouchableOpacity>
-        {renderPickerWithDoneButton("structures", ["Far", "Near", "No Structures"], structures, setStructures)}
+        {renderPickerWithDoneButton("structures", ["N/A", "Close", "Within Reach", "Far"], structures, setStructures)}
 
         {/* Emergency */}
         <View style={styles.emergencyContainer}>
@@ -145,12 +132,13 @@ export default function DeclareScreen() {
             value={isEmergency}
             onValueChange={setIsEmergency}
             thumbColor={isEmergency ? "#FF0000" : "#ccc"}
+            trackColor={{ false: "#ddd", true: "#ddd" }} // Red circle, default iOS track
           />
         </View>
 
         {/* Submit Button */}
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-          <Text style={styles.buttonText}>Submit Declaration</Text>
+          <Text style={styles.buttonText}>Submit</Text>
         </TouchableOpacity>
       </View>
     </TouchableWithoutFeedback>
@@ -158,17 +146,17 @@ export default function DeclareScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, paddingTop: 50, backgroundColor: "#fff" },
+  container: { flex: 1, padding: 20, paddingTop: 80, backgroundColor: "#fff" },
   header: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#FF8A2D",
-    marginBottom: 20,
+    color: "#FF7A30",
+    marginBottom: 30,
     textAlign: "center",
   },
   input: {
     height: 50,
-    borderColor: "#FF8A2D",
+    borderColor: "#FF7A30",
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 20,
@@ -177,7 +165,7 @@ const styles = StyleSheet.create({
   dropdownButton: {
     height: 50,
     justifyContent: "center",
-    borderColor: "#FF8A2D",
+    borderColor: "#FF7A30",
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 20,
@@ -189,19 +177,12 @@ const styles = StyleSheet.create({
   picker: { height: 150 },
   doneButton: {
     alignSelf: "center",
-    backgroundColor: "#FF8A2D",
+    backgroundColor: "#FF7A30",
     padding: 10,
     borderRadius: 8,
     marginTop: 10,
   },
   doneButtonText: { color: "#fff", fontWeight: "bold" },
-  switchContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 20,
-  },
-  label: { fontSize: 16, color: "#333" },
   emergencyContainer: {
     marginTop: 40,
     padding: 20,
@@ -213,7 +194,7 @@ const styles = StyleSheet.create({
   },
   emergencyText: { fontSize: 18, fontWeight: "bold", color: "#FF0000" },
   button: {
-    backgroundColor: "#FF8A2D",
+    backgroundColor: "#FF7A30",
     paddingVertical: 15,
     borderRadius: 10,
     alignItems: "center",
