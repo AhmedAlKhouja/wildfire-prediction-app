@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 20,
     paddingVertical: 37,
-    backgroundColor: "#ff8a2d",
+    backgroundColor: "#FF7A30",
   },
   headerText: { color: "#fff", fontSize: 20, fontWeight: "bold" },
   mapContainer: {
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
   },
   magnitudeContainer: {
-    backgroundColor: "#ff8a2d",
+    backgroundColor: "#FF7A30",
     borderRadius: 5,
     paddingHorizontal: 10,
     paddingVertical: 5,
